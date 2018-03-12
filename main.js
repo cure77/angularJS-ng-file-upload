@@ -8,10 +8,10 @@ app.controller('MyCtrl', ['$scope', 'Upload', function ($scope, Upload) {
     // upload later on form submit or something similar
     $scope.submit = function() {
         debugger;
-      if ($scope.form.file.$valid && $scope.file) {
+      if (angular.isDefined($scope.form.file) && $scope.form.file.$valid && $scope.file) {
         $scope.upload($scope.file);
       }
-      if ($scope.form.files.$valid && $scope.files) {
+      if (angular.isDefined($scope.form.files) && $scope.form.files.$valid && $scope.files) {
         $scope.uploadFiles($scope.files);
       }
 
