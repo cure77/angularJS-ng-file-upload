@@ -4,12 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ng-file-upload</title>
-
+    <title>ng-file-upload to CF server</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/ng-file-upload@12.2.13/dist/ng-file-upload.min.js"></script>
+    <script src="main.js"></script>
 </head>
-<body>
-    
+<body ng-app="fileUpload" ng-controller="MyCtrl">
+
+    Upload on form submit or button click
+    <form name="form">
+      Single Image with validations
+      <div class="button" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"
+        ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
+        ngf-resize="{width: 100, height: 100}">Select</div>
+      Multiple files
+      <div class="button" ngf-select ng-model="files" ngf-multiple="true">Select</div>
+
+      Drop files: <div ngf-drop ng-model="files" class="drop-box">Drop</div>
+
+      <button type="submit" ng-click="submit()">submit</button>
+    </form>
+
+
+    Upload right away after file selection:
+    <div class="button" ngf-select="upload($file)">Upload on file select</div>
+    <div class="button" ngf-select="uploadFiles($files)" multiple="multiple">Upload on file select</div>
+      Drop File:
+    <div ngf-drop="uploadFiles($files)" class="drop-box"
+      ngf-drag-over-class="'dragover'" ngf-multiple="true"
+      ngf-pattern="'image/*,application/pdf'">Drop Images or PDFs files here</div>
+    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+
 </body>
 </html>
